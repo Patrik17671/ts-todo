@@ -3,24 +3,22 @@ import React, { FC, InputHTMLAttributes } from "react";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	name: string;
 	label?: string;
-	error?: string;
+	error?: any;
 	register?: any;
 	wrapperClass?: string;
-	required: boolean;
+	required?: boolean;
 	className?: string;
 }
 
-const TextInput: FC<InputProps> = ({
-		 register,
-		 name,
-		 error,
-		 label,
-		 wrapperClass,
-		 required,
-		 ...rest
-	 }) => {
-
-
+const Input: FC<InputProps> = ({
+				 register,
+				 name,
+				 error,
+				 label,
+				 wrapperClass,
+					required,
+				 ...rest
+			 }) => {
 	return (
 		<div className={wrapperClass}>
 			{label ?
@@ -29,7 +27,7 @@ const TextInput: FC<InputProps> = ({
 					{required ? <span>required</span> : ""}
 				</label> : ""
 			}
-			<input
+			<textarea
 				{...register(name)}
 				{...rest}
 			/>
@@ -38,4 +36,4 @@ const TextInput: FC<InputProps> = ({
 	);
 };
 
-export default TextInput;
+export default Input;

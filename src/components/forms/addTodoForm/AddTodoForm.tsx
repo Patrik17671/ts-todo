@@ -2,10 +2,10 @@ import React, { FC } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import TextInput from "@/pages/components/forms/textInput/TextInput";
+import TextInput from "@/components/forms/textInput/TextInput";
 import { UseFormRegisterReturn } from "react-hook-form";
-import TextArea from "@/pages/components/forms/textArea/TextArea";
-import DateInput from "@/pages/components/forms/dateInput/DateInput";
+import TextArea from "@/components/forms/textArea/TextArea";
+import DateInput from "@/components/forms/dateInput/DateInput";
 import { useMutation ,useQueryClient} from '@tanstack/react-query';
 import axios from 'axios';
 
@@ -19,12 +19,6 @@ export interface FormProps {
 	register?: UseFormRegisterReturn ;
 	className?: classNameType;
 }
-
-interface Task {
-	title: string;
-	text: string;
-	date: string;
-};
 
 // validation
 const formSchema = yup.object().shape({
@@ -49,25 +43,26 @@ const AddTodoForm: FC<FormProps> = () => {
 
 	const queryClient = useQueryClient();
 
-	const createTask = async (data: Task) => {
-		const { data: response } = await axios.post('https://6469cb00183682d6144674c8.mockapi.io/api/v1/task', data);
+	const createTask = async (data: FormProps) => {
+		const editedData = {...data, state: true}
+
+		const { data: response } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}api/v1/todos`, editedData);
 		return response.data;
 	};
 
 	const { mutate, isLoading } = useMutation(createTask, {
-		onSuccess: data => {
-			const message = "success"
-			alert(message)
+		onSuccess: () => {
+			queryClient.invalidateQueries(["todos"]);
 		},
 		onError: () => {
 			alert("there was an error")
 		},
 		onSettled: () => {
-			queryClient.invalidateQueries('task');
+			queryClient.invalidateQueries(['task']);
 		}
 	});
 
-	const handleOnSubmit = (data: Task ) => {
+	const handleOnSubmit = (data: FormProps ) => {
 		const task = {
 			...data
 		}
@@ -83,22 +78,24 @@ const AddTodoForm: FC<FormProps> = () => {
 					placeholder="title"
 					error={errors.title?.message}
 					autoFocus
+					required={true}
 					register={register}
-					{...register("title")}
+
 				/>
 				<TextArea
 					name="text"
 					placeholder="text"
 					error={errors.text?.message}
+					required={true}
 					register={register}
-					{...register("text")}
+
 				/>
 				<DateInput
 					name="date"
 					placeholder="date"
 					error={errors.date?.message}
 					register={register}
-					{...register("date")}
+					required={true}
 				/>
 			</div>
 			<button type="submit">Add todo</button>

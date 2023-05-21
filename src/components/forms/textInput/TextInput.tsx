@@ -3,14 +3,14 @@ import React, { FC, InputHTMLAttributes } from "react";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	name: string;
 	label?: string;
-	error?: string;
+	error?: any;
 	register?: any;
 	wrapperClass?: string;
-	required: boolean;
+	required?: boolean;
 	className?: string;
 }
 
-const DateInput: FC<InputProps> = ({
+const TextInput: FC<InputProps> = ({
 		 register,
 		 name,
 		 error,
@@ -30,7 +30,6 @@ const DateInput: FC<InputProps> = ({
 				</label> : ""
 			}
 			<input
-				type="date"
 				{...register(name)}
 				{...rest}
 			/>
@@ -39,4 +38,4 @@ const DateInput: FC<InputProps> = ({
 	);
 };
 
-export default DateInput;
+export default TextInput;
