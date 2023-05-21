@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
 h1{
-  @apply text-red-500
+  font-size: 42px;
+  @apply text-center font-bold;
+}
+
+.container{
+  width: 100%;
+  max-width: 1440px;
+  @apply px-2 mx-auto md:px-6 py-6 md:py-8;
 }
