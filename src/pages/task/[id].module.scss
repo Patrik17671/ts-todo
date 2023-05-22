@@ -1,0 +1,30 @@
+@import "@/styles/_colors.scss";
+
+.wrapper{
+  width: 640px;
+  max-width: 100%;
+  background: $gray2;
+  @apply mx-auto mt-6 px-6 py-4 rounded-md shadow-lg;
+  .titleWrap{
+    @apply flex justify-between items-center;
+  }
+  .date{
+    font-size: 14px;
+    color: $gray;
+  }
+  .done,.active{
+    font-size: 14px;
+    @apply px-2 py-1 rounded-sm text-white
+  }
+  .done{
+    @apply bg-green-500;
+  }
+  .active{
+    background: $black;
+  }
+}
+.backBtn{
+  background: $gray2;
+  font-size: 14px;
+  @apply px-3 py-2 rounded-sm;
+}

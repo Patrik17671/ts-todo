@@ -8,6 +8,7 @@ import TextArea from "@/components/forms/textArea/TextArea";
 import DateInput from "@/components/forms/dateInput/DateInput";
 import { useMutation ,useQueryClient} from '@tanstack/react-query';
 import axios from 'axios';
+import styles from "./AddTodoForm.module.scss";
 
 export type classNameType = string;
 
@@ -24,13 +25,13 @@ export interface FormProps {
 const formSchema = yup.object().shape({
 	title: yup
 		.string()
-		.required("Title is required"),
+		.required("Title is required!"),
 	text: yup
 		.string()
-		.required("Text is required"),
+		.required("Text is required!"),
 	date: yup
 		.string()
-		.required("Date is required"),
+		.required("Date is required!"),
 });
 
 const AddTodoForm: FC<FormProps> = () => {
@@ -43,6 +44,7 @@ const AddTodoForm: FC<FormProps> = () => {
 
 	const queryClient = useQueryClient();
 
+	//Sending new task
 	const createTask = async (data: FormProps) => {
 		const editedData = {...data, state: true}
 
@@ -50,16 +52,14 @@ const AddTodoForm: FC<FormProps> = () => {
 		return response.data;
 	};
 
-	const { mutate, isLoading } = useMutation(createTask, {
+	//revalidate catched data
+	const { mutate } = useMutation(createTask, {
 		onSuccess: () => {
 			queryClient.invalidateQueries(["todos"]);
 		},
 		onError: () => {
 			alert("there was an error")
 		},
-		onSettled: () => {
-			queryClient.invalidateQueries(['task']);
-		}
 	});
 
 	const handleOnSubmit = (data: FormProps ) => {
@@ -70,35 +70,36 @@ const AddTodoForm: FC<FormProps> = () => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(handleOnSubmit)} >
-			<div className="d-flex justify-content-center fields__email">
-				<TextInput
-					name="title"
-					type="text"
-					placeholder="title"
-					error={errors.title?.message}
-					autoFocus
-					required={true}
-					register={register}
+		<form onSubmit={handleSubmit(handleOnSubmit)} className={styles.form} >
+			<TextInput
+				name="title"
+				type="text"
+				label={"Title"}
+				placeholder="title"
+				error={errors.title?.message}
+				autoFocus
+				required={true}
+				register={register}
 
-				/>
-				<TextArea
-					name="text"
-					placeholder="text"
-					error={errors.text?.message}
-					required={true}
-					register={register}
+			/>
+			<TextArea
+				name="text"
+				placeholder="text"
+				label={"Text"}
+				error={errors.text?.message}
+				required={true}
+				register={register}
 
-				/>
-				<DateInput
-					name="date"
-					placeholder="date"
-					error={errors.date?.message}
-					register={register}
-					required={true}
-				/>
-			</div>
-			<button type="submit">Add todo</button>
+			/>
+			<DateInput
+				name="date"
+				placeholder="date"
+				label={"Deadline"}
+				error={errors.date?.message}
+				register={register}
+				required={true}
+			/>
+			<button className={styles.button} type="submit">Add todo</button>
 		</form>
 	);
 };

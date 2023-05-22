@@ -1,4 +1,5 @@
 import React, { FC, InputHTMLAttributes } from "react";
+import styles from "./TextArea.module.scss";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	name: string;
@@ -20,18 +21,18 @@ const Input: FC<InputProps> = ({
 				 ...rest
 			 }) => {
 	return (
-		<div className={wrapperClass}>
+		<div className={styles.areaWrapper  + " " + wrapperClass}>
 			{label ?
 				<label htmlFor={name}>
 					{label}
-					{required ? <span>required</span> : ""}
+					{required ? <span className={"required"}>*</span> : ""}
 				</label> : ""
 			}
 			<textarea
 				{...register(name)}
 				{...rest}
 			/>
-			{error ? <span role="alert">{error}</span> : ""}
+			{error ? <span className="error">{error}</span> : ""}
 		</div>
 	);
 };

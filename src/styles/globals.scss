@@ -1,15 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./_colors";
 
-
+body{
+  background: linear-gradient(90deg, rgba(0,104,255,1) 0%, rgba(0,168,255,1) 36%, rgba(0,212,255,1) 100%);
+  height: 100vh;
+}
 h1{
   font-size: 42px;
   @apply text-center font-bold;
 }
-
+h3{
+  font-size: 28px;
+  @apply font-bold;
+}
+h4{
+  font-size: 24px;
+  @apply font-bold;
+}
 .container{
   width: 100%;
   max-width: 1440px;
-  @apply px-2 mx-auto md:px-6 py-6 md:py-8;
+  @apply px-2 mx-auto md:px-6 py-6 md:py-8 relative;
+}
+.abs-link{
+  &::before{
+    content: "";
+    z-index: 1;
+    @apply absolute top-0 left-0 w-full h-full cursor-pointer;
+  }
+}
+.required{
+  @apply text-red-500 pl-1;
+}
+.error{
+  font-size: 14px;
+  @apply text-red-700 font-bold;
+}
+.emptyList{
+  font-size: 18px;
+  color: $gray2;
+  @apply text-center;
 }

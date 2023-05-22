@@ -1,0 +1,38 @@
+@import "@/styles/_colors.scss";
+
+.item{
+  width: 100%;
+  background: $gray2;
+  @apply px-6 py-3 flex justify-between items-center shadow-lg rounded-lg relative;
+  .date{
+    font-size: 14px;
+    color: $gray
+  }
+  .buttons{
+    font-size: 14px;
+    @apply flex flex-col items-center gap-2;
+  }
+  .done{
+    background: $blue;
+  }
+  .active{
+    background: #b4b4b4;
+  }
+  .delete{
+    background: $red;
+    font-size: 12px;
+    z-index: 2;
+    @apply px-2 py-1 rounded-md cursor-pointer transition;
+    &:hover{
+      background: darken($red , 10%) ;
+    }
+  }
+  .switch{
+    z-index: 2;
+  }
+  .details{
+    &:hover{
+      @apply underline
+    }
+  }
+}

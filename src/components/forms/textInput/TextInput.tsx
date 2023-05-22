@@ -1,4 +1,5 @@
 import React, { FC, InputHTMLAttributes } from "react";
+import styles from "./TextInput.module.scss";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	name: string;
@@ -22,18 +23,18 @@ const TextInput: FC<InputProps> = ({
 
 
 	return (
-		<div className={wrapperClass}>
+		<div className={styles.inputWrapper + " " + wrapperClass}>
 			{label ?
 				<label htmlFor={name}>
 					{label}
-					{required ? <span>required</span> : ""}
+					{required ? <span className={"required"}>*</span> : ""}
 				</label> : ""
 			}
 			<input
 				{...register(name)}
 				{...rest}
 			/>
-			{error ? <span role="alert">{error}</span> : ""}
+			{error ? <span className="error">{error}</span> : ""}
 		</div>
 	);
 };

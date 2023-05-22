@@ -1,5 +1,5 @@
 import React, { FC, InputHTMLAttributes } from "react";
-
+import styles from "./DateInput.module.scss";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	name: string;
 	label?: string;
@@ -22,19 +22,19 @@ const DateInput: FC<InputProps> = ({
 
 
 	return (
-		<div className={wrapperClass}>
+		<div className={styles.dateWrapper + " " + wrapperClass }>
 			{label ?
 				<label htmlFor={name}>
 					{label}
-					{required ? <span>required</span> : ""}
+					{required ? <span className={"required"}>*</span> : ""}
 				</label> : ""
 			}
 			<input
-				type="date"
+				type="datetime-local"
 				{...register(name)}
 				{...rest}
 			/>
-			{error ? <span role="alert">{error}</span> : ""}
+			{error ? <span className="error">{error}</span> : ""}
 		</div>
 	);
 };

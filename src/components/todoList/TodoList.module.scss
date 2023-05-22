@@ -1,0 +1,7 @@
+@import "@/styles/_colors.scss";
+
+.list{
+  width: 600px;
+  max-width: 100%;
+  @apply flex flex-col gap-4 items-center mx-auto mb-10;
+}

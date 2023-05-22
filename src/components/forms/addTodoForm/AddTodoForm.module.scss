@@ -1,0 +1,15 @@
+@import "@/styles/_colors.scss";
+
+.form{
+  width: 540px;
+  max-width: 100%;
+  @apply flex flex-col justify-center gap-2 mx-auto my-10;
+
+  .button{
+    background: $black;
+    @apply px-6 py-2 mt-4 rounded-md text-white transition;
+    &:hover{
+      background: darken($black, 10%);
+    }
+  }
+}

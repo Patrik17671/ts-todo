@@ -1,0 +1,12 @@
+@import "@/styles/_colors.scss";
+
+.inputWrapper{
+  input{
+    width: 100%;
+    @apply py-2 px-6 rounded-md shadow-lg
+  }
+  label{
+    color: $gray2;
+    @apply font-bold;
+  }
+}

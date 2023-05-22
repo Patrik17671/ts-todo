@@ -1,0 +1,12 @@
+@import "@/styles/_colors.scss";
+
+.dateWrapper{
+  input{
+    width: 100%;
+    @apply py-2 px-6 rounded-md shadow-lg
+  }
+  label{
+    @apply font-bold;
+    color: $gray2;
+  }
+}

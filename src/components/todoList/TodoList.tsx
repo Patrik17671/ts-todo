@@ -1,6 +1,7 @@
 import map from "lodash/map";
 import TodoItem from "@/components/todoItem/TodoItem";
 import {TodosType} from "@/types";
+import styles from "./TodoList.module.scss";
 
 type Item = {
 	title: string;
@@ -12,7 +13,7 @@ type Item = {
 const TodoList = ({todoList}: {todoList: TodosType}) => {
 
 	return(
-		<ul>
+		<ul className={styles.list}>
 			{map(todoList, (item: Item,index) => {
 				return(
 					<TodoItem key={index} item={item}  />
