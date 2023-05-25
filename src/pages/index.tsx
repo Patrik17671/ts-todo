@@ -20,8 +20,8 @@ const Home = () => {
 
   const filterValues: FilterValueType[] = [
     { id: 1, text: 'All', value: "" },
-    { id: 2, text: 'Active', value: "true" },
-    { id: 3, text: 'Done', value: "false"},
+    { id: 2, text: 'Active', value: "false" },
+    { id: 3, text: 'Done', value: "true"},
   ];
 
   const [selectedFilter, setSelectedFilter] = useState<FilterValueType>(filterValues[0]);
