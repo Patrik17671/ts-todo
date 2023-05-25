@@ -19,13 +19,8 @@
     background: #b4b4b4;
   }
   .delete{
-    background: $red;
-    font-size: 12px;
     z-index: 2;
-    @apply px-2 py-1 rounded-md cursor-pointer transition;
-    &:hover{
-      background: darken($red , 10%) ;
-    }
+    @apply cursor-pointer;
   }
   .switch{
     z-index: 2;

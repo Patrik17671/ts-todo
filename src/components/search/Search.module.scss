@@ -1,0 +1,8 @@
+.form{
+  @apply flex relative;
+  .button{
+    top: 3px;
+    right: 5px;
+    @apply absolute p-2;
+  }
+}

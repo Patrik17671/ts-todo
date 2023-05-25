@@ -20,7 +20,6 @@ const DateInput: FC<InputProps> = ({
 		 ...rest
 	 }) => {
 
-
 	return (
 		<div className={styles.dateWrapper + " " + wrapperClass }>
 			{label ?

@@ -43,3 +43,8 @@ h4{
   color: $gray2;
   @apply text-center;
 }
+.filterWrapper{
+  width: 540px;
+  max-width: 100%;
+  @apply mx-auto flex justify-between items-center;
+}

@@ -6,19 +6,20 @@ import { useRouter } from "next/router";
 import styles from "./[id].module.scss";
 import Link from "next/link";
 import {formatDateTime} from "@/utils/functions";
+import Image from 'next/image';
+import backIcon from "../../../public/icons/arrow-back.svg";
 
 const Page = () => {
 	const router = useRouter();
 	const pageId = typeof router.query?.id === "string" ? router.query.id : "";
 
-	const { isSuccess, data: task, isLoading } = useQuery(
+	const {  data: task, isLoading } = useQuery(
 		["task", pageId],
 		() => getTaskData(pageId),
 		{
 			enabled: pageId.length > 0
 		}
 	);
-
 
 	if(isLoading){
 		return <h1>...loading</h1>
@@ -28,7 +29,10 @@ const Page = () => {
 
 	return(
 		<div className="container">
-			<Link className={styles.backBtn} href={"/"} >Back to home</Link>
+			<Link className={styles.backBtn} href={"/"} >
+				<Image src={backIcon} height={14} alt={"icon"} />
+				Back to home
+			</Link>
 			<h1>Task {task?.title}</h1>
 			<div className={styles.wrapper}>
 				<div className={styles.titleWrap}>
@@ -61,6 +65,7 @@ export const getStaticProps: GetStaticProps = async (context) =>{
 	}
 }
 
+//Generating paths on first open
 export const getStaticPaths: GetStaticPaths = async () => {
 	return {
 		paths: [],

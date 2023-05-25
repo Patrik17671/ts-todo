@@ -26,5 +26,6 @@
 .backBtn{
   background: $gray2;
   font-size: 14px;
-  @apply px-3 py-2 rounded-sm;
+  width: fit-content;
+  @apply px-3 py-2 flex gap-2 rounded-sm;
 }

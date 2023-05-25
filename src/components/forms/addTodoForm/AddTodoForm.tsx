@@ -39,6 +39,7 @@ const AddTodoForm: FC<FormProps> = () => {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors }
 	} = useForm({ resolver: yupResolver(formSchema) });
 
@@ -46,7 +47,7 @@ const AddTodoForm: FC<FormProps> = () => {
 
 	//Sending new task
 	const createTask = async (data: FormProps) => {
-		const editedData = {...data, state: true}
+		const editedData = {...data, state: false}
 
 		const { data: response } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}api/v1/todos`, editedData);
 		return response.data;
@@ -56,9 +57,10 @@ const AddTodoForm: FC<FormProps> = () => {
 	const { mutate } = useMutation(createTask, {
 		onSuccess: () => {
 			queryClient.invalidateQueries(["todos"]);
+			reset();
 		},
 		onError: () => {
-			alert("there was an error")
+			alert("there was an error");
 		},
 	});
 

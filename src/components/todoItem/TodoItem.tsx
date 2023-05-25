@@ -6,6 +6,8 @@ import {updateTask} from "@/pages/api/updateTask";
 import styles from "./TodoItem.module.scss";
 import { Switch } from '@headlessui/react'
 import {formatDateTime} from "@/utils/functions";
+import Image from 'next/image';
+import closeIcon from "../../../public/icons/close.svg";
 
 const TodoItem = ({item}: {item: TodosType}) => {
 
@@ -49,8 +51,10 @@ const TodoItem = ({item}: {item: TodosType}) => {
 				<span className={styles.date}><strong>Deadline: </strong>{formatDateTime(date)}</span>
 			</div>
 			<div className={styles.buttons}>
-				<Link className={`${styles.details} abs-link`} href={`/task/${id}`}>Details</Link>
-				<span className={styles.delete} onClick={() => handleRemoveTask(id)}>Delete</span>
+				<Link className={`${styles.details} abs-link`} href={`/task/${id}`}></Link>
+				<span className={styles.delete} onClick={() => handleRemoveTask(id)}>
+					<Image src={closeIcon} width={24} height={24} alt={"icon"} />
+				</span>
 				<Switch
 					onClick={handleToggleTask}
 					checked={state}

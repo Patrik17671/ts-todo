@@ -1,0 +1,38 @@
+@import "@/styles/_colors.scss";
+
+.filter{
+  background: $gray2;
+  width: 100px;
+  @apply px-3 py-2 shadow-sm rounded-md relative cursor-pointer;
+  span{
+    width: 100%;
+    @apply relative block;
+  }
+  img{
+    top: 6px;
+    right: 5px;
+    transform: rotate(-90deg);
+    @apply absolute transition;
+  }
+  &.active{
+    ul{
+      @apply block;
+    }
+    img{
+      transform: rotate(90deg);
+    }
+  }
+  ul{
+    @apply hidden absolute px-3 py-2 shadow-sm rounded-md left-0;
+    top: 50px;
+    width: 100px;
+    background: $gray2;
+  }
+  li{
+    font-size: 14px;
+    @apply cursor-pointer transition;
+    &:hover{
+      @apply underline;
+    }
+  }
+}
